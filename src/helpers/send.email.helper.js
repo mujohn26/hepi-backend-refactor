@@ -276,7 +276,9 @@ class mailer {
             <div class="Email-wrapper_log">HEPi Ltd</div>
             <div class="Email-wrapper_body">
                 <div class="Email-wrapper_body_name">Dear, ${firstName}</div>    
-                <br>  <span id="thanks" style="margin-top: 20px;"> Thanks for booking service with Health Escort Patients Initiative (Hepi) <br>  Your booking request has been received.one of our team is going to contact you right now for further process. <br><br> In mean time your payment will be <b>${price} Rwf</b> for the whole service. <br><br> Stay safe. <br><br> <a>www.mperekeza.com </a></span> 
+                <br> <span id="thanks" style="margin-top: 20px;"> Thanks for booking service with Health Escort Patients Initiative (Hepi) <br>  Your booking request has been received.one of our team is going to contact you right now for further process. <br><br> In mean time your payment will be <b>${price}</b> Rwf for the whole service.<br><br> The amount can be paid to the following accounts <br> - Back account: <b>00046-07770168-23</b>  Equity bank <br> - Momo pay:<b>*182*8*1*045833#</b> <br> - Pay pal account: <b>mperekeza2021@gmail.com</b> 
+                
+                <br><br> Stay safe. <br><br> <a>www.mperekeza.com </a></span> 
                  </div>
             </div>
    

@@ -70,7 +70,18 @@ export const createAgent = catchAsyncErr(async (req, res, next) => {
 
     // bio,
   };
-
+  const agent = await db.agent.findOne({
+    where: {
+      email
+    },
+  });
+  if(agent !==null){
+    return res.status(409).json({
+      status:409,
+      message: "Agent with this email already exist",
+    });
+  }
+  else{
   const newUserAgent = await db.agent.create(newAgent);
   const token = generateAuthToken({
     id: newUserAgent.id,
@@ -84,7 +95,7 @@ export const createAgent = catchAsyncErr(async (req, res, next) => {
     message: "Agent Created success",
     data: newUserAgent,
     token,
-  });
+  });}
 });
 
 export const signin = async (req, res) => {

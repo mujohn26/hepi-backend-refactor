@@ -11,9 +11,11 @@ const checkAgentEmailpassword = async (req, res) => {
   }
   if (user.dataValues.status !== 'active') {
     const status = 404;
-    return response.errorMessage(res, 'Ooops your account is not active please contact admin to activate', status);
+    return response.errorMessage(res, 'Your account is not active please contact admin to activate', status);
   }
-  if (!decryptPassword(req.body.password, user.password)) {
+  const isPasswordEqual = await decryptPassword(req.body.password, user.password);
+
+  if (isPasswordEqual===false) {
     const status = 401;
     return response.errorMessage(
       res,

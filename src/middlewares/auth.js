@@ -5,6 +5,7 @@ import {generateAuthToken} from '../helpers/tokens';
 
 const checkEmailpassword = async (req, res) => {
   const user = await UserServices.findAdminByEmail(req.body.email);
+
   if (user == null) {
     const status = 404;
     return response.errorMessage(res, 'Could not found the user in our system', status);
@@ -13,7 +14,8 @@ const checkEmailpassword = async (req, res) => {
     const status = 404;
     return response.errorMessage(res, 'Ooops your account is not active please contact admin to activate', status);
   }
-  if (!decryptPassword(req.body.password, user.password)) {
+  const isPasswordEqual = await decryptPassword(req.body.password, user.password);
+  if (isPasswordEqual=== false) {
     const status = 401;
     return response.errorMessage(
       res,

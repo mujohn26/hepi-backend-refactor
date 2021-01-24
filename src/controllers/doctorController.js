@@ -59,7 +59,19 @@ export const createDoctor = catchAsyncErr(async (req, res, next) => {
     bio,
     photo
   };
-
+  const staff = await db.doctor.findOne({
+    where: {
+      email
+    },
+  });
+  if(staff !==null)
+  {
+    return res.status(409).json({
+      status:409,
+      message: "Account with this email already exist",
+    });
+  }
+  else{
   const newUserDoctor = await db.doctor.create(newDoctor);
   const { services } = req.body;
   services.map(async (service, index) => {
@@ -82,7 +94,7 @@ export const createDoctor = catchAsyncErr(async (req, res, next) => {
     message: 'Admin Created success',
     data: newUserDoctor,
     token,
-  });
+  });}
 });
 
 export const activateStaff = async (req, res) => {
