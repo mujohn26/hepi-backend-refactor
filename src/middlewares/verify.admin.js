@@ -13,7 +13,7 @@ class VerifyAdminMiddleware {
   static async verifySuperAdmin(req, res, next) {
     const user = await UserServices.findAdminByEmail(req.user.email);
     const role = user.role.toLowerCase();
-    if (role !== 'superadmin') {
+    if (role !== 'superAdmin') {
       return response.errorMessage(
         res,
         'You can not perform this Action',
