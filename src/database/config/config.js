@@ -4,6 +4,9 @@ module.exports.development = {
   url: process.env.DATABASE_URL_DEV,
   dialect: 'postgres',
   logging: false,
+  ssl:{
+    rejectUnauthorized:false
+  }
   // username: "root",
   // password: "root",
   // database: "hepi_dev",
@@ -21,11 +24,22 @@ module.exports.development = {
 module.exports.testing = {
   url: process.env.DATABASE_URL_TEST,
   dialect: 'postgres',
-  logging: false
+  logging: false,
+  ssl:{
+    rejectUnauthorized:false
+  }
 };
 
 module.exports.production = {
   url: process.env.DATABASE_URL,
   dialect: 'postgresql',
-  logging: false
+  logging: false,
+  ssl:true,
+  dialectOptions: {
+    ssl: {
+        require: true,
+        rejectUnauthorized: false // <<<<<< YOU NEED THIS
+    }
+  }
+
 };
