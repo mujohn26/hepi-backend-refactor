@@ -88,7 +88,7 @@ export const createDoctor = catchAsyncErr(async (req, res, next) => {
 
   const emailView = mailer.welcomeDoctorView(email, firstName);
   mailer.sendEmail(email, 'Welcome email', emailView);
-  await sendMessage(firstName, tel);
+  // await sendMessage(firstName, tel);
 
   res.status(201).json({
     message: 'Admin Created success',
